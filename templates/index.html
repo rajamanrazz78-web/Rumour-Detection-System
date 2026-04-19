@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rumor Detection</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+  <style>
+    body {
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+      color: white;
+      text-align: center;
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      margin-top: 100px;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+      width: 60%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .input-box {
+      width: 100%;
+      padding: 10px;
+      border-radius: 5px;
+      border: none;
+      font-size: 18px;
+    }
+    .btn-check {
+      background-color: #007bff;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      font-size: 18px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    .btn-check:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>📰 Rumor Detection System</h1>
+    <p>Enter a news statement or article below to check its authenticity.</p>
+    <form action="/predict" method="post">
+      <input type="text" name="text" class="input-box" placeholder="Enter text here..." required>
+      <br><br>
+      <button type="submit" class="btn-check">Check Truth</button>
+    </form>
+  </div>
+</body>
+</html>

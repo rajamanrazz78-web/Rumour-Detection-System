@@ -23,7 +23,7 @@ with open("logistic_regression_model.pkl", "rb") as model_file:
 with open("tfidf_vectorizer.pkl", "rb") as vectorizer_file:
     tfidf_vectorizer = pickle.load(vectorizer_file)
 
-FACT_CHECK_API_KEY = "YOUR_API_KEY_HERE"
+FACT_CHECK_API_KEY = "AIzaSyCrbbpUFuJQwUsYJjIrxYOv9Dglz3O9ymQ"
 FACT_CHECK_API_URL = "https://factchecktools.googleapis.com/v1alpha1/claims:search"
 
 app = Flask(__name__)

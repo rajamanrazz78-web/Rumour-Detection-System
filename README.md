@@ -1,97 +1,147 @@
-# Rumour Detection AI Tool
+Rumour Detection System
+A Flask-based web application that predicts whether a news statement or article is a rumor or true news using Natural Language Processing and a trained Logistic Regression model. The project also integrates the Google Fact Check Tools API to fetch related fact-check results for supported claims.
 
-## Overview
-The **Rumour Detection AI Tool** is a Natural Language Processing (NLP)-based project that analyzes social media posts, newspaper articles, and blog content to determine whether the information is a **rumour** (fake news) or **true**. This project integrates **Google's Fact Check API** for cross-verification, improving the credibility of predictions.
+Features
+News text classification using TF-IDF and Logistic Regression.
+​
 
-## Features
-- **NLP-based classification**: Uses Machine Learning models to classify text as rumour or truth.
-- **Google Fact Check API Integration**: Cross-verifies content with verified fact-checking sources.
-- **User-Friendly Web Interface**: Allows users to input text and get real-time analysis.
-- **Jupyter Notebook for Training**: Model training and testing are performed in Jupyter Notebook.
-- **Flask-based Web App**: The model is deployed using a Flask server.
-- **Interactive and Visually Appealing UI**: The front end is designed to be clean and user-friendly.
+Flask web interface for user input and result display.
 
-## Technologies Used
-- **Python**
-- **Jupyter Notebook** (for model development)
-- **Natural Language Processing (NLP)**
-- **Machine Learning (ML)** (Logistic Regression / Transformer-based Model)
-- **Google Fact Check API** (for verification)
-- **Flask** (for web deployment)
-- **HTML, CSS, JavaScript** (for front-end development)
+Fact-check lookup using the Google Fact Check Tools API.
+​
 
-## Project Structure
-```
-RumourDetectionProject/
-│-- model_training.ipynb   # Jupyter Notebook for training the ML model
-│-- dataset/               # Contains dataset files used for training
-│-- flask_app/
-│   ├── static/            # CSS, JavaScript files for UI
-│   ├── templates/         # HTML files for UI
-│   ├── app.py             # Flask backend for serving requests
-│   ├── model.pkl          # Trained machine learning model
-│   ├── requirements.txt   # Python dependencies
-│   ├── fact_check.py      # Google Fact Check API Integration
-│-- README.md              # Project documentation
-```
+Confidence score display for model predictions.
 
-## Installation Guide
-### Prerequisites
-- Python 3.x
-- Jupyter Notebook (for training)
-- Flask (for running the web app)
-- Google Fact Check API key (for verification)
+Handles short inputs with warning messages.
 
-### Step 1: Clone the Repository
-```bash
-git clone https://github.com/your-username/RumourDetectionAI.git
-cd RumourDetectionAI
-```
+Uses NLTK-based text preprocessing.
 
-### Step 2: Install Dependencies
-```bash
-pip install -r requirements.txt
-```
+Project Structure
+text
+Rumour-Detection-System-main/
+├── app.py
+├── rumour.ipynb
+├── logistic_regression_model.pkl
+├── tfidf_vectorizer.pkl
+├── templates/
+│   ├── index.html
+│   └── result.html
+├── static/
+│   └── style.css
+└── README.md
+Tech Stack
+Python
 
-### Step 3: Train the Model (If needed)
-If you want to retrain the model, open **model_training.ipynb** in Jupyter Notebook and run all the cells.
-The trained model will be saved as **model.pkl**.
+Flask
 
-### Step 4: Run the Flask Web Application
-```bash
-cd flask_app
+scikit-learn
+
+NLTK
+
+HTML/CSS
+
+Google Fact Check Tools API
+​
+
+How It Works
+The user enters a news statement or article in the web form.
+
+The application cleans the text using regex, tokenization, and stopword removal.
+
+The TF-IDF vectorizer transforms the cleaned text into numerical features.
+
+The Logistic Regression model predicts whether the content is rumor or true news.
+
+The Google Fact Check Tools API is queried with a short claim to find related fact-check results.
+​
+
+The final result is shown with model prediction, confidence score, and API-based fact-check output.
+
+Installation
+Clone the repository:
+
+bash
+git clone https://github.com/your-username/your-repo-name.git
+cd Rumour-Detection-System-main
+Create and activate a virtual environment:
+
+bash
+python -m venv .venv
+.venv\Scripts\activate
+Install dependencies:
+
+bash
+pip install flask scikit-learn nltk requests
+Download required NLTK resources:
+
+python
+import nltk
+nltk.download('punkt_tab')
+nltk.download('stopwords')
+API Key Setup
+For security, do not hardcode your real API key in app.py. Use an environment variable instead.
+
+Update your code like this:
+
+python
+import os
+FACT_CHECK_API_KEY = os.environ.get("FACT_CHECK_API_KEY", "your_api_key")
+FACT_CHECK_API_URL = "https://factchecktools.googleapis.com/v1alpha1/claims:search"
+Set the key in PowerShell before running the app:
+
+powershell
+$env:FACT_CHECK_API_KEY="your_real_key_here"
 python app.py
-```
-Open **http://127.0.0.1:5000/** in your browser to access the web application.
+Running the Project
+Start the Flask server:
 
-## Sample Inputs for Testing
-### True News Example:
-```
-"NASA confirms the successful landing of the Perseverance rover on Mars."
-```
-### Fake News Example:
-```
-"5G towers are causing COVID-19 infections."
-```
+bash
+python app.py
+Then open the local URL shown in the terminal, usually:
 
-## Future Improvements
-- Implement a **Deep Learning-based Transformer Model** for better accuracy.
-- Improve **dataset quality** by integrating real-time news feeds.
-- Add **multi-language support** for global usage.
-- Optimize **Google Fact Check API requests** to handle large-scale data.
+text
+http://127.0.0.1:5000/
+Sample Test Inputs
+Rumor examples
+Bill Gates put microchips in COVID-19 vaccines.
 
-## Contributing
-If you would like to contribute, feel free to fork the repository and submit a pull request.
+The 2020 U.S. presidential election was stolen through widespread voter fraud.
 
-## License
-This project is licensed under the MIT License.
+Climate change is a hoax.
 
-## Contact
-For any queries, feel free to contact:
-- **Vinamrakumar Vishwakarma**
-- **vinamravishwakarma2004@gmail.com**
-- **Github Profile : vinamra001**
+True news examples
+Chandrayaan-3 successfully landed on the Moon.
 
----
-This **README.md** provides a clear understanding of the project and instructions for setup and usage. You can modify the sections according to your project needs! 🚀
+Regular UPI transactions are free for users.
 
+Joe Biden won the 2020 U.S. presidential election.
+
+Git Commands
+To update your project on GitHub:
+
+bash
+git status
+git add app.py rumour.ipynb README.md
+git commit -m "Update app, notebook, and README"
+git push
+Notes
+Fact Check API works best with short, specific claims rather than long paragraphs.
+​
+
+If you get a scikit-learn pickle error such as LogisticRegression object has no attribute multi_class, retrain or resave the model in the same virtual environment used by Flask.
+​
+
+Avoid uploading real API keys, large datasets, or unnecessary generated images to GitHub.
+​
+
+Future Improvements
+Add support for Indian and international datasets.
+
+Improve UI and result visualization.
+
+Deploy the project on Render or another cloud platform.
+
+Replace pickle-based loading with a more robust deployment workflow.
+
+License
+This project is for educational and academic use.

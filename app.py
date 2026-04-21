@@ -23,7 +23,8 @@ with open("logistic_regression_model.pkl", "rb") as model_file:
 with open("tfidf_vectorizer.pkl", "rb") as vectorizer_file:
     tfidf_vectorizer = pickle.load(vectorizer_file)
 
-FACT_CHECK_API_KEY = "AIzaSyCrbbpUFuJQwUsYJjIrxYOv9Dglz3O9ymQ"
+#FACT_CHECK_API_KEY = "your_api_key"
+FACT_CHECK_API_KEY = os.environ.get("FACT_CHECK_API_KEY", "your_api_key")
 FACT_CHECK_API_URL = "https://factchecktools.googleapis.com/v1alpha1/claims:search"
 
 app = Flask(__name__)
@@ -46,8 +47,14 @@ def clean_text(text):
 
 
 def fact_check_api(query):
+    # ✅ Extract first sentence for better API matching
+    first_sentence = query.strip().split('.')[0].strip()
+    # If first sentence too long, take first 100 characters
+    if len(first_sentence) > 100:
+        first_sentence = first_sentence[:100]
+
     try:
-        params = {"query": query, "key": FACT_CHECK_API_KEY}
+        params = {"query": first_sentence, "key": FACT_CHECK_API_KEY}
         response = requests.get(FACT_CHECK_API_URL, params=params, timeout=5)
         if response.status_code == 200:
             data = response.json()
@@ -63,7 +70,6 @@ def fact_check_api(query):
     except Exception:
         pass
     return [{"text": "No fact-check results found", "claimant": "N/A", "rating": "N/A"}]
-
 
 @app.route("/", methods=["GET"])
 def home():
@@ -108,7 +114,7 @@ def predict():
     probabilities = model.predict_proba(transformed_text)
     rumor_prob = probabilities[0][1]
     confidence = round(max(probabilities[0]) * 100, 2)
-    model_result = "Rumor 🚫" if rumor_prob >= 0.80 else "True News ✅"
+    model_result = "Rumor 🚫" if rumor_prob >= 0.75 else "True News ✅"
 
     fact_results = fact_check_api(user_text)
 

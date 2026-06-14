@@ -146,8 +146,8 @@ git push
 
   ## 👨‍💻 Developer
 
-**Raj**
-- GitHub: [@rajaman](https://github.com/rajamanrazz78-web)
+ Raj Aman
+- GitHub:(https://github.com/rajamanrazz78-web)
 
 ## License
 This project is for educational and academic use.

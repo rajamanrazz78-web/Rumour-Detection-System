@@ -13,6 +13,7 @@ A Flask-based web application that predicts whether a news statement or article 
 - Uses NLTK-based text preprocessing.
 
 ## Project Structure
+pre<>
 
 Rumour-Detection-System-main/
 ├── app.py
@@ -25,6 +26,8 @@ Rumour-Detection-System-main/
 ├── static/
 │   └── style.css
 └── README.md
+
+pre<>
 
 ## Tech Stack
 

@@ -27,7 +27,7 @@ Rumour-Detection-System-main/
 │   └── style.css
 └── README.md
 
-<pre>
+</pre>
 
 ## Tech Stack
 
@@ -144,6 +144,10 @@ git push
 - Deploy the project on Render or another cloud platform.
 - Replace pickle-based loading with a more robust deployment workflow.
 
-## License
+  ## 👨‍💻 Developer
 
+**Raj**
+- GitHub: [@rajaman](https://github.com/rajamanrazz78-web)
+
+## License
 This project is for educational and academic use.
